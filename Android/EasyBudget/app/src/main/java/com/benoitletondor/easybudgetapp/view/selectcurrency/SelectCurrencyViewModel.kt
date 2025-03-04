@@ -45,16 +45,19 @@ class SelectCurrencyViewModel @Inject constructor(
                 Pair(CurrencyHelper.getMainAvailableCurrencies(), CurrencyHelper.getOtherAvailableCurrencies())
             }
 
-            val userCurrency = parameters.getUserCurrency()
+            val userCurrency = parameters.getUserCurrency() ?: Currency.getInstance("INR")
+
+            val sortedMainCurrencies = mainCurrencies.sortedBy { it.displayName }
+            val sortedOtherCurrencies = otherCurrencies.sortedBy { it.displayName }
 
             stateMutableFlow.emit(State.Loaded(
-                mainCurrencies = mainCurrencies.map {
+                mainCurrencies = sortedMainCurrencies.map {
                     CurrencyItem(
                         currency = it,
                         isSelected = it == userCurrency,
                     )
                 },
-                otherCurrencies = otherCurrencies.map {
+                otherCurrencies = sortedOtherCurrencies.map {
                     CurrencyItem(
                         currency = it,
                         isSelected = it == userCurrency,
