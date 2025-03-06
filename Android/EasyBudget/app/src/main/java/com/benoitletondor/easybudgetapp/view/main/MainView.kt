@@ -112,6 +112,7 @@ fun MainView(
     viewModel: MainViewModel = hiltViewModel(),
     openAddExpenseScreenLiveFlow: Flow<Unit>,
     openAddRecurringExpenseScreenLiveFlow: Flow<Unit>,
+    openUpiQrExpenseScreenLiveFlow: Flow<Unit>,
     openMonthlyReportScreenFromNotificationFlow: Flow<Unit>,
     navigateToOnboarding: () -> Unit,
     onboardingResultFlow: Flow<OnboardingResult>,
@@ -123,6 +124,7 @@ fun MainView(
     navigateToLogin: (shouldDismissAfterAuth: Boolean) -> Unit,
     navigateToCreateAccount: () -> Unit,
     navigateToAddExpense: (LocalDate, Expense?) -> Unit,
+    navigateToUpiQrExpense: (LocalDate, Expense?) -> Unit,
     navigateToAddRecurringExpense: (LocalDate, Expense?) -> Unit,
 ) {
     MainView(
@@ -133,6 +135,7 @@ fun MainView(
         showMonthlyReportHintFlow = viewModel.showMonthlyReportHintFlow,
         openAddExpenseScreenLiveFlow = openAddExpenseScreenLiveFlow,
         openAddRecurringExpenseScreenLiveFlow = openAddRecurringExpenseScreenLiveFlow,
+        openUpiQrExpenseScreenLiveFlow = openUpiQrExpenseScreenLiveFlow,
         openMonthlyReportScreenFromNotificationFlow = openMonthlyReportScreenFromNotificationFlow,
         forceRefreshDataFlow = viewModel.forceRefreshFlow,
         firstDayOfWeekFlow = viewModel.firstDayOfWeekFlow,
@@ -177,6 +180,7 @@ fun MainView(
         onNewBalanceSelected = viewModel::onNewBalanceSelected,
         onAddRecurringEntryPressed = viewModel::onAddRecurringEntryPressed,
         onAddEntryPressed = viewModel::onAddEntryPressed,
+        onUpiQrEntryPressed = viewModel::onUpiQrEntryPressed,
         onExpenseCheckedChange = viewModel::onExpenseChecked,
         onExpensePressed = viewModel::onExpensePressed,
         onExpenseLongPressed = viewModel::onExpenseLongPressed,
@@ -195,6 +199,7 @@ fun MainView(
         navigateToLogin = navigateToLogin,
         navigateToCreateAccount = navigateToCreateAccount,
         navigateToAddExpense = navigateToAddExpense,
+        navigateToUpiQrExpense = navigateToUpiQrExpense,
         navigateToAddRecurringExpense = navigateToAddRecurringExpense,
         onMonthlyReportHintDismissed = viewModel::onMonthlyReportHintDismissed,
         onRetrySelectedDateDataLoadingButtonPressed = viewModel::onRetrySelectedDateDataLoadingButtonPressed,
@@ -210,6 +215,7 @@ private fun MainView(
     alertMessageFlow: StateFlow<String?>,
     showMonthlyReportHintFlow: StateFlow<Boolean>,
     openAddExpenseScreenLiveFlow: Flow<Unit>,
+    openUpiQrExpenseScreenLiveFlow: Flow<Unit>,
     openAddRecurringExpenseScreenLiveFlow: Flow<Unit>,
     openMonthlyReportScreenFromNotificationFlow: Flow<Unit>,
     forceRefreshDataFlow: Flow<Unit>,
@@ -253,6 +259,7 @@ private fun MainView(
     onNewBalanceSelected: (Double, String) -> Unit,
     onAddRecurringEntryPressed: () -> Unit,
     onAddEntryPressed: () -> Unit,
+    onUpiQrEntryPressed: () -> Unit,
     onExpenseCheckedChange: (Expense, Boolean) -> Unit,
     onExpensePressed: (Expense) -> Unit,
     onExpenseLongPressed: (Expense) -> Unit,
@@ -271,6 +278,7 @@ private fun MainView(
     navigateToLogin: (shouldDismissAfterAuth: Boolean) -> Unit,
     navigateToCreateAccount: () -> Unit,
     navigateToAddExpense: (LocalDate, Expense?) -> Unit,
+    navigateToUpiQrExpense: (LocalDate, Expense?) -> Unit,
     navigateToAddRecurringExpense: (LocalDate, Expense?) -> Unit,
     onMonthlyReportHintDismissed: () -> Unit,
     onRetrySelectedDateDataLoadingButtonPressed: () -> Unit,
@@ -304,7 +312,21 @@ private fun MainView(
                 }
         }
     }
-
+    LaunchedEffect(key1 = "openUpiQrExpenseScreen") {
+        launch {
+            dbStateFlow
+                .flatMapLatest { state ->
+                    if (state is MainViewModel.DBState.Loaded) {
+                        return@flatMapLatest openUpiQrExpenseScreenLiveFlow
+                    } else {
+                        return@flatMapLatest flow {  }
+                    }
+                }
+                .collect {
+                    navigateToUpiQrExpense(LocalDate.now(), null)
+                }
+        }
+    }
     LaunchedEffect(key1 = "openAddRecurringExpenseScreen") {
         launch {
             dbStateFlow
@@ -424,6 +446,9 @@ private fun MainView(
                 MainViewModel.Event.GoBackToCurrentMonth -> Unit /* No-op */
                 is MainViewModel.Event.OpenAddExpense -> {
                     navigateToAddExpense(event.date, null)
+                }
+                is MainViewModel.Event.OpenUpiQrExpense -> {
+                    navigateToUpiQrExpense(event.date, null)
                 }
                 is MainViewModel.Event.OpenAddRecurringExpense -> {
                     navigateToAddRecurringExpense(event.date, null)
@@ -788,6 +813,10 @@ private fun MainView(
                             onAddEntryPressed()
                             showFABMenu = false
                         },
+                        onUpiQrEntryPressed = {
+                            onUpiQrEntryPressed()
+                            showFABMenu = false
+                        },
                         onTapOutsideCTAs = {
                             showFABMenu = false
                         }
@@ -894,19 +923,22 @@ private fun Preview(
 ) {
     AppTheme {
         MainView(
-            selectedAccountFlow = MutableStateFlow(MainViewModel.SelectedAccount.Selected.Online(
-                name = "Account name",
-                isOwner = true,
-                ownerEmail = "test@test.com",
-                accountId = "accountId",
-                accountSecret = "accountSecret",
-                hasBeenMigratedToPg = false,
-            )),
+            selectedAccountFlow = MutableStateFlow(
+                MainViewModel.SelectedAccount.Selected.Online(
+                    name = "Account name",
+                    isOwner = true,
+                    ownerEmail = "test@test.com",
+                    accountId = "accountId",
+                    accountSecret = "accountSecret",
+                    hasBeenMigratedToPg = false,
+                )
+            ),
             dbStateFlow = MutableStateFlow(dbState),
             eventFlow = MutableSharedFlow(),
             alertMessageFlow = MutableStateFlow(alertMessage),
             showMonthlyReportHintFlow = MutableStateFlow(false),
             openAddExpenseScreenLiveFlow = MutableSharedFlow(),
+            openUpiQrExpenseScreenLiveFlow = MutableSharedFlow(),
             openAddRecurringExpenseScreenLiveFlow = MutableSharedFlow(),
             openMonthlyReportScreenFromNotificationFlow = MutableSharedFlow(),
             forceRefreshDataFlow = MutableSharedFlow(),
@@ -963,16 +995,17 @@ private fun Preview(
             onRetryDBLoadingButtonPressed = {},
             onAccountSelected = {},
             onExpenseDeletionCancelled = {},
-            onCurrentBalanceEditedCancelled = {_, _ ->},
-            onRestoreRecurringExpenseClicked = {_, _ ->},
+            onCurrentBalanceEditedCancelled = { _, _ -> },
+            onRestoreRecurringExpenseClicked = { _, _ -> },
             onCheckAllPastEntriesConfirmPressed = {},
-            onNewBalanceSelected = {_, _ ->},
+            onNewBalanceSelected = { _, _ -> },
             onAddRecurringEntryPressed = {},
             onAddEntryPressed = {},
-            onExpenseCheckedChange = {_, _ ->},
+            onUpiQrEntryPressed = {},
+            onExpenseCheckedChange = { _, _ -> },
             onExpensePressed = {},
             onExpenseLongPressed = {},
-            onDeleteRecurringExpenseClicked = {_, _ ->},
+            onDeleteRecurringExpenseClicked = { _, _ -> },
             onDeleteExpenseClicked = {},
             onEditExpensePressed = {},
             onEditRecurringExpenseOccurrenceAndFollowingOnesPressed = {},
@@ -987,6 +1020,7 @@ private fun Preview(
             navigateToLogin = {},
             navigateToCreateAccount = {},
             navigateToAddExpense = { _, _ -> },
+            navigateToUpiQrExpense = { _, _ -> },
             navigateToAddRecurringExpense = { _, _ -> },
             onMonthlyReportHintDismissed = {},
             onRetrySelectedDateDataLoadingButtonPressed = {},

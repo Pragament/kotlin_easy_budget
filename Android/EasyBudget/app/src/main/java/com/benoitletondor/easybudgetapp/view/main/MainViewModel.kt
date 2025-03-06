@@ -795,6 +795,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun onUpiQrEntryPressed() {
+        viewModelScope.launch {
+            eventMutableFlow.emit(Event.OpenUpiQrExpense(selectedDateFlow.value))
+        }
+    }
+
     fun onExpensePressed(expense: Expense) {
         viewModelScope.launch {
             eventMutableFlow.emit(Event.ShowExpenseEditionOptions(expense))
@@ -908,6 +914,7 @@ class MainViewModel @Inject constructor(
         data object OpenMonthlyReport : Event()
         data class OpenAddRecurringExpense(val date: LocalDate) : Event()
         data class OpenAddExpense(val date: LocalDate) : Event()
+        data class OpenUpiQrExpense(val date: LocalDate) : Event()
         data class OpenManageAccount(val account: SelectedAccount.Selected.Online) : Event()
         data class ShowExpenseEditionOptions(val expense: Expense) : Event()
         data class OpenEditExpense(val expense: Expense) : Event()
