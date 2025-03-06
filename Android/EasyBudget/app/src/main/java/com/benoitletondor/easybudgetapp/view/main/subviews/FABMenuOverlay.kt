@@ -49,6 +49,7 @@ fun FABMenuOverlay(
     onAddRecurringEntryPressed: () -> Unit,
     onAddEntryPressed: () -> Unit,
     onTapOutsideCTAs: () -> Unit,
+    onUpiQrEntryPressed: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -117,6 +118,37 @@ fun FABMenuOverlay(
                 Icon(
                     painter = painterResource(R.drawable.ic_baseline_add_24),
                     contentDescription = stringResource(R.string.fab_add_expense),
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier.clickable(onClick = onUpiQrEntryPressed),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(6.dp))
+                    .background(color = Color.Black)
+                    .padding(horizontal = 10.dp, vertical = 5.dp),
+                text = stringResource(R.string.upi_qr_scanner),
+                color = Color.White,
+                fontSize = 15.sp,
+            )
+
+            Spacer(modifier = Modifier.width(10.dp))
+
+            FloatingActionButton(
+                onClick = onUpiQrEntryPressed,
+                containerColor = colorResource(R.color.white),
+              //  contentColor = colorResource(R.color.white),
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_qr),
+                    contentDescription = stringResource(R.string.upi_qr_scanner),
+                    modifier = Modifier.width(30.dp),
                 )
             }
         }

@@ -56,4 +56,23 @@
 
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
+
+    <shortcut
+        android:shortcutId="qr_scanner"
+        android:enabled="true"
+        android:icon="@drawable/ic_qr_code"
+        android:shortcutShortLabel="@string/upi_qr_scanner"
+        android:shortcutLongLabel="@string/upi_qr_scanner"
+        android:shortcutDisabledMessage="@string/upi_qr_scanner">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.benoitletondor.easybudgetapp"
+            android:targetClass="com.benoitletondor.easybudgetapp.MainActivity">
+            <extra
+                android:name="intent.qrscanner.open"
+                android:value="true" />
+        </intent>
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
 </shortcuts>

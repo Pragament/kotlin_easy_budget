@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     private val openSubscriptionScreenLiveFlow = MutableLiveFlow<Unit>()
     private val openAddExpenseScreenLiveFlow = MutableLiveFlow<Unit>()
+    private val openUpiQrExpenseScreenLiveFlow = MutableLiveFlow<Unit>()
     private val openAddRecurringExpenseScreenLiveFlow = MutableLiveFlow<Unit>()
     private val openMonthlyReportScreenLiveFlow = MutableLiveFlow<Unit>()
 
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
                     },
                     openSubscriptionScreenFlow = openSubscriptionScreenLiveFlow,
                     openAddExpenseScreenLiveFlow = openAddExpenseScreenLiveFlow,
+                    openUpiQrExpenseScreenLiveFlow = openUpiQrExpenseScreenLiveFlow,
                     openAddRecurringExpenseScreenLiveFlow = openAddRecurringExpenseScreenLiveFlow,
                     openMonthlyReportScreenFlow = openMonthlyReportScreenLiveFlow,
                 )
@@ -216,7 +218,7 @@ class MainActivity : AppCompatActivity() {
     private fun performIntentActionIfAny(): Boolean {
         if (intent != null) {
             return try {
-                openMonthlyReportIfNeeded(intent) || openAddExpenseIfNeeded(intent) || openAddRecurringExpenseIfNeeded(intent)
+                openMonthlyReportIfNeeded(intent) || openAddExpenseIfNeeded(intent) || openAddRecurringExpenseIfNeeded(intent) || openUpiQrExpenseIfNeeded(intent)
             } finally {
                 intent = null
             }
@@ -276,6 +278,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Open the upi qr expense screen if the given intent contains the [.INTENT_SHOW_ADD_EXPENSE]
+     * extra.
+     *
+     * @param intent
+     */
+
+    private fun openUpiQrExpenseIfNeeded(intent: Intent): Boolean {
+        if (intent.getBooleanExtra(INTENT_SHOW_ADD_UPI_QR_EXPENSE, false)) {
+            lifecycleScope.launch {
+                openUpiQrExpenseScreenLiveFlow.emit(Unit)
+            }
+
+            return true
+        }
+
+        return false
+    }
+
+
+    /**
      * Open the add recurring expense screen if the given intent contains the [.INTENT_SHOW_ADD_RECURRING_EXPENSE]
      * extra.
      *
@@ -297,5 +319,6 @@ class MainActivity : AppCompatActivity() {
         // Those 2 are used by the shortcuts
         private const val INTENT_SHOW_ADD_EXPENSE = "intent.addexpense.show"
         private const val INTENT_SHOW_ADD_RECURRING_EXPENSE = "intent.addrecurringexpense.show"
+        private const val INTENT_SHOW_ADD_UPI_QR_EXPENSE = "intent.qrscanner.open"
     }
 }
