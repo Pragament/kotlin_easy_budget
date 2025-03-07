@@ -45,4 +45,4 @@ You can contact me regarding FinanceTracker using this email: [FinanceTracker@be
 
 
 ### Attribution
-This project is based on [NewProjectName](https://github.com/Pragament/kotlin_easy_budget) and follows the Apache License 2.0.
+This project is based on [EasyBudget](https://github.com/Pragament/kotlin_easy_budget) and follows the Apache License 2.0.
