@@ -1,0 +1,486 @@
+<!--
+   Copyright 2025 Benoit Letondor
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<resources>
+
+    <string name="action_settings">Impostazioni</string>
+    <string name="action_balance">Correggi il saldo</string>
+    <string name="action_go_to_current_month">Torna al mese corrente</string>
+    <string name="action_manage_account">Gestisci conto</string>
+    <string name="action_become_premium">Diventa premium</string>
+    <string name="action_mark_all_past_entries_as_checked">Contrassegna tutte le voci precedenti</string>
+    <string name="fab_add_expense">Aggiungi un’entrata/uscita</string>
+    <string name="fab_add_monthly_expense">Aggiungi un’entrata/uscita ricorrente</string>
+    <string name="title_activity_add_expense">Aggiungi un’uscita</string>
+    <string name="title_activity_add_income">Aggiungi un’entrata</string>
+    <string name="title_activity_edit_expense">Modifica l’uscita</string>
+    <string name="title_activity_edit_income">Modifica l’entrata</string>
+    <string name="title_activity_recurring_expense_add">Aggiungi un’uscita ricorrente</string>
+    <string name="title_activity_recurring_income_add">Aggiungi un’entrata ricorrente</string>
+    <string name="title_activity_recurring_expense_edit">Modifica un’uscita ricorrente</string>
+    <string name="title_activity_recurring_income_edit">Modifica un’entrata ricorrente</string>
+    <string name="title_activity_settings">Impostazioni</string>
+    <string name="title_activity_welcome">FinanceTracker</string>
+    <string name="title_activity_premium">Premium</string>
+    <string name="title_activity_login">Accedi con Google</string>
+    <string name="title_activity_create_account">Crea un conto in linea</string>
+    <string name="title_activity_manage_account">Gestisci conto online</string>
+    <string name="title_activity_monthly_report">Rapporto mensile</string>
+    <string name="cancel">Annulla</string>
+    <string name="undo">ANNULLA</string>
+    <string name="ok">OK</string>
+    <string name="amount">Montante ( %s )</string>
+    <string name="description">Descrizione</string>
+    <string name="type">Tipo</string>
+    <string name="payment">Uscita</string>
+    <string name="income">Entrata</string>
+    <string name="date">Data</string>
+    <string name="first_occurence">Prima occorrenza</string>
+    <string name="no_expense_for_today">Nessuna uscita/entrata per il momento.</string>
+
+    <string name="no_description_error">Inserisci una descrizione</string>
+    <string name="no_amount_error">Inserisci un montante</string>
+    <string name="negative_amount_error">Il montante deve essere superiore a 0</string>
+    <string name="invalid_amount">Montante non valido</string>
+    <string name="expense_add_before_init_date_dialog_title">Avvertimento</string>
+    <string name="expense_add_before_init_date_dialog_description">La data della voce che desideri aggiungere è precedente alla data di configurazione dell\'app.\n\nSignifica che il saldo inserito durante la configurazione dell\'app sarà interessato da questa voce.\n\nVuoi continuare?\n(È comunque possibile modificare il saldo nel menu, se necessario.)</string>
+    <string name="expense_add_before_init_date_dialog_positive_cta">Confermare</string>
+    <string name="expense_add_before_init_date_dialog_negative_cta">Annulla</string>
+    <string name="expense_check_error_title">OPS!</string>
+    <string name="expense_check_error_message">Errore (%s)</string>
+
+    <string name="check_all_past_expences_title">Contrassegna tutte le voci precedenti</string>
+    <string name="check_all_past_expences_message">Vuoi spuntare tutte le voci prima di oggi?\nNon puoi annullare questa azione.</string>
+    <string name="check_all_past_expences_confirm_cta">Sì</string>
+    <string name="check_all_past_expences_error_title">OPS!</string>
+    <string name="check_all_past_expences_error_message">Si è verificato un errore durante il contrassegno di tutte le voci precedenti, riprova (%s)</string>
+
+    <string name="dialog_edit_expense_title">Cosa vuoi fare?</string>
+    <string name="dialog_edit_income_title">Cosa vuoi fare?</string>
+    <string-array name="dialog_edit_expense_choices">
+        <item>Modifica l’uscita</item>
+        <item>Elimina l’uscita</item>
+    </string-array>
+    <string-array name="dialog_edit_income_choices">
+        <item>Modifica l’importo</item>
+        <item>Elimina l’importo</item>
+    </string-array>
+    <string name="dialog_edit_recurring_expense_title">Uscite ricorrente: Cosa vuoi fare?</string>
+    <string name="dialog_edit_recurring_income_title">Entrate ricorrente: Cosa vuoi fare?</string>
+    <string-array name="dialog_edit_recurring_expense_choices">
+        <item>Modifica questo elemento</item>
+        <item>Modifica questo e tutti gli elementi seguenti</item>
+        <item>Elimina soltanto questo elemento</item>
+        <item>Elimina tutti gli elementi seguenti</item>
+        <item>Elimina tutti gli elementi precedenti</item>
+        <item>Elimina tutto</item>
+    </string-array>
+    <string-array name="dialog_edit_recurring_income_choices">
+        <item>Modifica questo elemento</item>
+        <item>Modifica questo e tutti gli elementi seguenti</item>
+        <item>Elimina soltanto questo elemento</item>
+        <item>Elimina tutti gli elementi seguenti</item>
+        <item>Elimina tutti gli elementi precedenti</item>
+        <item>Elimina tutto</item>
+    </string-array>
+    <string name="expense_delete_snackbar_text">Uscita eliminata</string>
+    <string name="income_delete_snackbar_text">Entrata eliminata</string>
+
+    <string name="adjust_balance_title">Correggi il saldo</string>
+    <string name="adjust_balance_message">Correggi il saldo attuale del tuo conto</string>
+    <string name="adjust_balance_expense_title">Correggi il saldo</string>
+    <string name="adjust_balance_snackbar_text">Saldo corretto a %s</string>
+    <string name="account_balance_format">Saldo del %s:</string>
+    <string name="account_balance_date_format">dd MMM</string>
+    <string name="add_expense_date_format">dd MMM yyyy</string>
+    <string name="adjust_limit_warning_title">Cambia il valore di allerta di saldo basso</string>
+    <string name="adjust_limit_warning_message">Imposta il valore di allerta (Deve essere > 0)</string>
+    <string name="adjust_limit_warning_error_title">OPS!</string>
+    <string name="adjust_limit_warning_error_message">Il valore che hai inserito non è valido. Inserisci un numero positivo, superiore a 0</string>
+    <string name="adjust_balance_error_title">OPS!</string>
+    <string name="adjust_balance_error_message">Il valore che hai inserito non è valido.</string>
+
+    <string name="daily">QUOTIDIANA</string>
+    <string name="monthly">MENSILE</string>
+    <string name="weekly">SETTIMANALE</string>
+    <string name="bi_weekly">2 SETTIMANE</string>
+    <string name="ter_weekly">3 SETTIMANE</string>
+    <string name="four_weekly">4 SETTIMANE</string>
+    <string name="bi_monthly">2 MESI</string>
+    <string name="ter_monthly">3 MESI</string>
+    <string name="six_monthly">6 MESI</string>
+    <string name="yearly">ANNUALE</string>
+    <string name="recurring_expense_add_loading_title">Carico</string>
+    <string name="recurring_expense_add_loading_message">Creazione dell’uscita ricorrente…</string>
+    <string name="recurring_income_add_loading_message">Creazione dell’entrata ricorrente…</string>
+    <string name="recurring_expense_add_error_title">OPS!</string>
+    <string name="recurring_expense_add_error_message">Errore.</string>
+    <string name="recurring_expense_delete_success_message">Uscita ricorrente eliminata con successo.</string>
+    <string name="recurring_expense_delete_loading_title">Eliminando</string>
+    <string name="recurring_expense_delete_loading_message">Eliminando l’uscita ricorrente…</string>
+    <string name="recurring_expense_delete_error_title">OPS!</string>
+    <string name="recurring_expense_delete_error_message">Errore.</string>
+    <string name="recurring_expense_restoring_loading_title">Annulla</string>
+    <string name="recurring_expense_restoring_loading_message">Reinserisci l’uscita ricorrente…</string>
+    <string name="recurring_expense_restored_success_message">Uscita ricorrente reinserita con successo</string>
+    <string name="recurring_expense_restore_error_title">OPS!</string>
+    <string name="recurring_expense_restore_error_message">Errore.</string>
+    <string name="recurring_expense_delete_first_error_title">OPS!</string>
+    <string name="recurring_expense_delete_first_error_message">Non ci sono occorrenze prima di questa.</string>
+    <string name="expense_delete_error_title">OPS!</string>
+    <string name="expense_delete_error_message">Errore.</string>
+
+    <string name="recurring_expense_interval">Ripetizione</string>
+    <string name="recurring_interval_daily">Ogni giorno</string>
+    <string name="recurring_interval_weekly">Ogni settimana</string>
+    <string name="recurring_interval_bi_weekly">Ogni 2 settimane</string>
+    <string name="recurring_interval_ter_weekly">Ogni 3 settimane</string>
+    <string name="recurring_interval_four_weekly">Ogni 4 settimane</string>
+    <string name="recurring_interval_monthly">Ogni mese</string>
+    <string name="recurring_interval_bi_monthly">Ogni 2 mesi</string>
+    <string name="recurring_interval_ter_monthly">Ogni 3 mesi</string>
+    <string name="recurring_interval_six_monthly">Ogni 6 mesi</string>
+    <string name="recurring_interval_yearly">Ogni anno</string>
+
+    <string name="setting_category_app_title">App</string>
+    <string name="setting_category_rate_button_title">L’app ti piace?</string>
+    <string name="setting_category_rate_button_message">Dimmi che ne pensi</string>
+    <string name="setting_category_bug_report_send_button_title">Segnala un bug</string>
+    <string name="setting_category_bug_report_send_text">\n\n---\n*Non eliminare questa parte*\nFinanceTracker id: %s</string>
+    <string name="setting_category_bug_report_send_error">Impossibile trovare un’app per inviare il rapporto di bug via email</string>
+    <string name="setting_category_general_title">Generale</string>
+    <string name="setting_category_currency_change_button_title">Cambia la valuta (%s)</string>
+    <string name="setting_category_currency_change_button_message">Seleziona la valuta che desideri utilizzare</string>
+    <string name="setting_category_currency_change_dialog_title">Seleziona la valuta</string>
+    <string name="setting_category_limit_set_button_title">Imposta un valore di allerta di saldo basso (%s)</string>
+    <string name="setting_category_limit_set_button_message">Cambia il valore di allerta di saldo basso</string>
+    <string name="setting_category_start_day_of_week_sunday">Le settimane inizieranno domenica</string>
+    <string name="setting_category_start_day_of_week_monday">Le settimane inizieranno lunedì</string>
+    <string name="setting_category_start_day_of_week_title">Inizia le settimane di domenica</string>
+    <string name="setting_category_app_version_message">Realizzata da @BenoitLetondor</string>
+    <string name="setting_category_share_app_title">Condividi con i tuoi amici</string>
+    <string name="setting_category_share_app_message">FinanceTracker è gratis! Non c’è motivo di non farla conoscere ai tuoi amici!</string>
+    <string name="setting_category_premium_title">Sottoscrizione</string>
+    <string name="setting_category_premium_status_title">Sei… premium!</string>
+    <string name="setting_category_pro_status_title">Sei… pro!</string>
+    <string name="setting_category_premium_status_message">Hai ora accesso alle funzionalità premium</string>
+    <string name="setting_category_pro_status_message">Hai accesso a funzionalità pro e premium</string>
+    <string name="setting_category_premium_redeem_title">Codice promozionale</string>
+    <string name="setting_category_premium_redeem_message">Utilizza un codice promozionale</string>
+    <string name="setting_category_notifications_update_title">Aggiornamenti</string>
+    <string name="setting_category_notifications_update_message">Tieniti informato sulle novità dell’app. Niente spam, promesso!</string>
+    <string name="setting_category_show_checked_balance_title">Mostra il saldo delle voci contrassegnate (✓)</string>
+    <string name="setting_category_show_checked_balance_message">Visualizza anche il saldo delle voci che ✓ per contrassegnare come pagate dopo il saldo normale</string>
+    <string name="setting_category_notifications_daily_title">Allerta quotidiana</string>
+    <string name="setting_category_notifications_daily_message">Ricevi una notifica alla fine della giornata se non hai inserito le tue spese</string>
+    <string name="setting_category_not_premium_status_title">Diventa premium o pro</string>
+    <string name="setting_category_not_premium_status_message">Sblocca nuove funzionalità esclusive</string>
+    <string name="setting_category_notifications_monthly_title">Notifica di rapporto mensile</string>
+    <string name="setting_category_notifications_monthly_message">Ricevi una notifica quando un nuovo rapporto mensile è completo</string>
+    <string name="setting_category_theme_title">Tema</string>
+    <string name="setting_theme_light">Leggero</string>
+    <string name="setting_theme_dark">Scuro</string>
+    <string name="setting_theme_platform">Default del sistema</string>
+
+    <string name="pro_popup_title">Sei… pro!</string>
+    <string name="pro_popup_message">Hai accesso a tutte le funzionalità!</string>
+    <string name="premium_popup_not_premium_title">Diventa premium</string>
+    <string name="premium_popup_not_premium_message">Accedi a tutte le funzionalità premium!</string>
+    <string name="premium_popup_premium_description">Sblocca il livello successivo di FinanceTracker con tutte le funzionalità necessarie per gestire un account in profondità:</string>
+    <string name="premium_popup_premium_unlocked_description">Sei Premium! Ecco cosa è incluso:</string>
+    <string name="premium_popup_not_premium_feature1_title">3. Allerta quotidiana</string>
+    <string name="premium_popup_not_premium_feature1_message">Ricevi una notifica alla fine della giornata se non hai inserito le tue spese.</string>
+    <string name="premium_popup_not_premium_feature2_title">1. Rapporto mensile</string>
+    <string name="premium_popup_not_premium_feature2_message">Ricevi un rapporto delle entrate e delle uscite del mese e scopri quanto hai risparmiato.</string>
+    <string name="premium_popup_not_premium_feature_more_expense_check">4. Contrassegna entrate e uscite</string>
+    <string name="premium_popup_not_premium_feature_more_expense_check_desc">Possibilità di contrassegnare una voce quando ha raggiunto il tuo conto bancario per tenere traccia di cosa sta succedendo</string>
+    <string name="premium_popup_not_premium_feature_more_dark_theme">5. Tema scuro!</string>
+    <string name="premium_popup_not_premium_feature_more_dark_theme_desc">Sblocca il tema scuro per l\'app e attivalo automaticamente o quando lo desideri.</string>
+    <string name="premium_popup_not_premium_feature_more_backup_title">2. Backup</string>
+    <string name="premium_popup_not_premium_feature_more_backup_message">Backup automatico dei tuoi dati nel cloud! Non devi più preoccuparti di perdere il budget.</string>
+    <string name="premium_popup_not_premium_feature_more_title">…moltissime altre funzioni che si aggiungeranno poco a poco!</string>
+    <string name="premium_popup_pro_description">Fai di più con FinanceTracker, tutto ciò che è incluso in Premium più funzionalità avanzate per gestire più account condivisibili:</string>
+    <string name="premium_popup_pro_unlocked_description">Sei Pro! Hai accesso a tutto ciò che è incluso con Premium, più:</string>
+    <string name="premium_popup_not_pro_feature1_title">1. Conti multipli</string>
+    <string name="premium_popup_not_pro_feature1_message">Aggiungi fino a 5 conti online per gestire il tuo conto cointestato, i risparmi o un conto professionale.</string>
+    <string name="premium_popup_not_pro_feature2_title">2. Condividi i tuoi account</string>
+    <string name="premium_popup_not_pro_feature2_message">Puoi invitare altri utenti Pro ai tuoi account online in modo che possano vedere e aggiungere/modificare voci.</string>
+    <string name="premium_popup_not_pro_feature3_title">3. Esporta o stampa i tuoi dati</string>
+    <string name="premium_popup_not_pro_feature3_message">Esporta i tuoi report mensili come CSV per utilizzare i dati su un\'altra app o per stamparli.</string>
+    <string name="premium_popup_buy_cta">Acquista</string>
+    <string name="premium_popup_become_title">Diventa premium</string>
+    <string name="premium_popup_become_message">Si direbbe che FinanceTracker ti piace!\nVuoi passare al livello successivo e scoprire le funzionalità premium?</string>
+    <string name="premium_popup_become_cta">Scopri</string>
+    <string name="premium_popup_become_not_now">Non ora</string>
+    <string name="premium_popup_become_not_ask_again">Non chiedermelo più</string>
+    <string name="premium_screen_pricing_disclaimer">%s/mese, annulla in qualsiasi momento.</string>
+    <string name="premium_screen_error_loading_title">Spiacenti</string>
+    <string name="premium_screen_error_loading_message">Impossibile raggiungere il PlayStore per recuperare i dati Premium e Pro. Controlla la tua rete e riprova.</string>
+    <string name="premium_screen_error_close_cta">Chiudi</string>
+
+    <string name="iab_purchase_success_title">Grazie</string>
+    <string name="iab_purchase_success_message">Grazie mille per il vostro sostegno! Ora puoi goderti le funzionalità sbloccate.</string>
+    <string name="iab_purchase_wait_title">Acquisto</string>
+    <string name="iab_purchase_wait_message">Attendi, prego</string>
+    <string name="iab_purchase_error_title">OPS!</string>
+    <string name="iab_purchase_error_message">Si è verificato un errore. Riprova più tardi o contattami se il problema persiste.\n(%s)</string>
+
+    <string name="voucher_redeem_dialog_title">Codice promozionale</string>
+    <string name="voucher_redeem_dialog_message">Inserisci il tuo codice promozionale</string>
+    <string name="voucher_redeem_dialog_cta">Utilizza</string>
+    <string name="voucher_redeem_error_dialog_title">OPS!</string>
+    <string name="voucher_redeem_error_code_invalid_dialog_message">Il tuo codice non è valido.</string>
+
+    <string name="rating_popup_question_title">Cosa pensi di FinanceTracker?</string>
+    <string name="rating_popup_question_message">Lavoro a questa applicazione nel tempo libero e la propongo gratuitamente. Ci sono sicuramente cose da migliorare e la tua opinione conta molto per me!</string>
+    <string name="rating_popup_question_cta_negative">Non mi piace</string>
+    <string name="rating_popup_question_cta_positive">Mi piace</string>
+    <string name="rating_popup_negative_title">:(</string>
+    <string name="rating_popup_negative_message">Mi dispiace… Ti andrebbe di inviarmi un’email con le tue impressioni?</string>
+    <string name="rating_popup_negative_cta_negative">No, grazie</string>
+    <string name="rating_popup_negative_cta_positive">Certo!</string>
+    <string name="rating_popup_positive_title">:)</string>
+    <string name="rating_popup_positive_message">Sono contento che l’app ti piaccia. Ti piacerebbe darle un bel voto sul PlayStore?</string>
+    <string name="rating_popup_positive_cta_negative">No, grazie</string>
+    <string name="rating_popup_positive_cta_positive">Certo!</string>
+    <string name="rating_feedback_send_error">Impossibile trovare un’app per inviare i commenti via email.</string>
+    <string name="rating_feedback_send_text"></string>
+    <string name="rating_popup_question_cta_dont_ask_again">Non chiedermelo più</string>
+
+    <string name="onboarding_screen_1_title">Benvenuto su FinanceTracker</string>
+    <string name="onboarding_screen_1_message">Il concetto è semplice: Inserisci entrate e uscite ricorrenti e occasionali, e l’app si occupa di monitorare quanto resta sul tuo conto… in qualsiasi momento!\n\nNiente di più semplice!</string>
+    <string name="onboarding_screen_1_message2">Pronto?</string>
+    <string name="onboarding_screen_1_cta">Sì</string>
+
+    <string name="onboarding_screen_2_title">Presentiamoci!</string>
+    <string name="onboarding_screen_2_message">Tappa n° 1: Quale valuta utilizzi?\n(Potrai cambiarla più tardi nelle Impostazioni).</string>
+    <string name="onboarding_screen_2_cta">Utilizzo %s</string>
+
+    <string name="onboarding_screen_3_title">Presentiamoci!</string>
+    <string name="onboarding_screen_3_message">Tappa n° 2: Di quanto disponi attualmente sul tuo conto?\n(Potrai cambiare la cifra più tardi).</string>
+    <string name="onboarding_screen_3_cta">Inizia con %s</string>
+
+    <string name="onboarding_screen_push_permission_title">Ricevi notifiche importanti?</string>
+    <string name="onboarding_screen_push_permission_message">Per evitare di perdere qualcosa di importante sul tuo budget o sull\'app, consenti le notifiche.\n\n(Niente spam, niente notifiche inutili, solo l\'essenziale!)</string>
+    <string name="onboarding_screen_push_permission_accept_cta">Permettere</string>
+    <string name="onboarding_screen_push_permission_not_now_cta">Non adesso</string>
+
+    <string name="onboarding_screen_4_title">Perfetto!</string>
+    <string name="onboarding_screen_4_message">(È stato facile, no?)</string>
+    <string name="onboarding_screen_4_message2">Quali sono le prossime tappe?</string>
+    <string name="onboarding_screen_4_message3">1. Aggiungi le tue entrate e uscite ricorrente (stipendio, affitto, fatture…)\n2. Non dimenticare di aggiungere le entrate e uscite di ogni giorno!</string>
+    <string name="onboarding_screen_4_message4">Grazie di aver scelto FinanceTracker, e benvenuto! :)</string>
+    <string name="onboarding_screen_4_cta">Avanti</string>
+
+    <string name="app_invite_message">Ehy, dovresti provare FinanceTracker, un’app semplicissima per gestire il tuo budget!</string> <!-- 100 chars or less -->
+
+    <string name="monthly_report_button_title">Rapporto mensile</string>
+    <string name="monthly_report_month_title_format">MMMM yyyy</string>
+    <string name="expenses">Uscite</string>
+    <string name="revenues">Entrate</string>
+    <string name="expenses_total">Totale delle uscite</string>
+    <string name="revenues_total">Totale delle entrate</string>
+    <string name="balance">Saldo</string>
+    <string name="monthly_report_no_entries_placeholder">Niente per questo mese.</string>
+    <string name="monthly_report_hint">Pssss: Puoi accedere ai rapporti da questo tasto</string>
+
+    <string name="backup_settings_activity_title">Backup</string>
+    <string name="backup_settings_cloud_backup">FinanceTracker backup su cloud</string>
+    <string name="backup_settings_not_authenticated_description">Il backup su cloud FinanceTracker è disponibile per gli utenti premium senza costi aggiuntivi.\nPer abilitare il backup su cloud FinanceTracker, accedi al tuo account Google</string>
+    <string name="backup_settings_not_authenticated_description_2">Il tuo account Google verrà utilizzato per identificare il tuo backup. Successivamente, sarai in grado di ripristinare i tuoi dati su un nuovo telefono utilizzando questo account.\n\nIl tuo account non verrà utilizzato per nient\'altro.</string>
+    <string name="backup_settings_not_authenticated_privacy_title">FinanceTracker prende sul serio la tua privacy</string>
+    <string name="backup_settings_not_authenticated_privacy_message">Effettuando l\'autenticazione con il tuo account Google, accetti che i tuoi dati FinanceTracker vengano caricati in modo sicuro sul cloud e collegati al tuo account Google.\n\nI tuoi dati FinanceTracker non verranno mai utilizzati o venduti a nessuno.\n\nVuoi continuare?</string>
+    <string name="backup_settings_not_authenticated_privacy_positive_cta">Accettare</string>
+    <string name="backup_settings_not_authenticated_privacy_negative_cta">Annulla</string>
+    <string name="backup_settings_backups_activated">Backup su cloud attivato</string>
+    <string name="backup_settings_backups_deactivated">Backup su cloud disattivato</string>
+    <string name="backup_settings_authenticate_cta">Accedi con Google</string>
+    <string name="backup_settings_your_google_account">Il tuo account Google</string>
+    <string name="backup_settings_cloud_backup_status">Backup su cloud: %s</string>
+    <string name="backup_settings_cloud_backup_status_activated">attivato</string>
+    <string name="backup_settings_cloud_backup_status_disabled">disattivato</string>
+    <string name="backup_settings_logout_cta">Disconnettersi</string>
+    <string name="backup_activated_description">Il backup dei tuoi dati verrà eseguito automaticamente ogni settimana. Se si cambia il telefono o si cancellano i dati, è possibile ripristinare un backup da qui.</string>
+    <string name="backup_last_update_date">Ultimo backup: %s</string>
+    <string name="backup_last_update_date_never">Mai</string>
+    <string name="backup_now_cta">Esegui il backup ora</string>
+    <string name="backup_restore_description">Ripristina i dati di backup</string>
+    <string name="backup_restore_explanation">Il ripristino dei dati significa che le voci correnti di FinanceTracker verranno rimosse e sostituite da quelle dell\'ultimo backup. Questa è un\'operazione irreversibile.</string>
+    <string name="backup_restore_cta">Ripristina i dati dall\'ultimo backup</string>
+    <string name="backup_now_error_title">Impossibile eseguire il backup</string>
+    <string name="backup_now_error_message">Backup non completato a causa di un errore. Puoi verificare la tua connessione e riprovare o consentire all\'app di riprovare automaticamente in un secondo momento.</string>
+    <string name="backup_already_exist_title">Trovato backup precedente</string>
+    <string name="backup_already_exist_message">Nel tuo account è stato trovato un backup FinanceTracker precedente di %s.\n\nVuoi ripristinarlo adesso?\n\n(Puoi farlo in seguito, prima del prossimo backup)</string>
+    <string name="backup_already_exist_positive_cta">Ristabilire</string>
+    <string name="backup_already_exist_negative_cta">Ignorare</string>
+    <string name="backup_restore_error_title">Errore durante il ripristino dei dati</string>
+    <string name="backup_restore_error_message">Si è verificato un errore durante il ripristino dei dati. Verifica la connessione e riprova più tardi.</string>
+    <string name="backup_restore_confirmation_title">Ripristinare il backup</string>
+    <string name="backup_restore_confirmation_message">Sei sicuro di voler ripristinare i dati dal backup de %s?\n\nSostituirà i tuoi dati attuali in modo irreversibile!\n\nL\'app verrà riavviata dopo il processo.</string>
+    <string name="backup_restore_confirmation_positive_cta">Ristabilire</string>
+    <string name="backup_restore_confirmation_negative_cta">Annulla</string>
+    <string name="backup_wipe_data_title">Elimina il backup su cloud</string>
+    <string name="backup_wipe_data_description">FinanceTracker ti consente di controllare i tuoi dati: fai clic qui se desideri eliminare tutti i dati di backup su cloud</string>
+    <string name="backup_wipe_data_cta">Elimina backup</string>
+    <string name="backup_wipe_data_confirmation_title">Elimina il backup su cloud</string>
+    <string name="backup_wipe_data_confirmation_message">Sei sicuro di voler eliminare tutti i tuoi dati di backup su cloud?\n\nQuesta operazione è irreversibile e perderai l\'accesso ai tuoi dati di backup (i dati locali attuali delle app non saranno interessati).</string>
+    <string name="backup_wipe_data_confirmation_positive_cta">Elimina</string>
+    <string name="backup_wipe_data_confirmation_negative_cta">Annulla</string>
+    <string name="backup_wipe_data_error_title">Impossibile eliminare il backup su cloud</string>
+    <string name="backup_wipe_data_error_message">Si è verificato un errore durante l\'eliminazione dei dati di backup. Verifica la connessione e riprova più tardi.</string>
+
+    <string name="account_error_loading_title">OPS!</string>
+    <string name="account_error_loading_message">Impossibile caricare i dati del tuo account.\n(%s)\n\nControlla la tua rete e riprova.</string>
+    <string name="account_error_loading_retry_cta">Riprova</string>
+    <string name="account_creation_success_toast">Account creato con successo!</string>
+    <string name="account_creation_success_error_title">OPS!</string>
+    <string name="account_creation_success_error_message">Si è verificato un errore durante la creazione del tuo account. Controlla la tua rete e riprova.\n(%s)</string>
+    <string name="account_pending_invitation_description">Invito all\'account in attesa</string>
+    <string name="account_invitation_error_accepting_title">OPS!</string>
+    <string name="account_invitation_error_accepting_message">Si è verificato un errore durante la creazione del tuo account. Controlla la tua rete e riprova.\n(%s)</string>
+    <string name="account_invitation_error_rejecting_title">OPS!</string>
+    <string name="account_invitation_error_rejecting_message">Si è verificato un errore durante il rifiuto dell\'invito. Controlla la tua rete e riprova.\n(%s)</string>
+    <string name="account_invitation_accepted_message">Invito accettato</string>
+    <string name="account_invitation_rejected_message">Invito respinto</string>
+    <string name="expense_edit_unable_to_load_db_error_title">Impossibile accedere al database</string>
+    <string name="expense_edit_unable_to_load_db_error_message">Impossibile accedere al database per mantenere la tua spesa. Controlla la tua rete e riavvia l\'app.</string>
+    <string name="expense_edit_unable_to_load_db_error_cta">Annulla</string>
+    <string name="expense_edit_error_saving_title">OPS!</string>
+    <string name="expense_edit_error_saving_message">Si è verificato un errore durante la persistenza della voce. Riprova e riavvia l\'app se il problema persiste.</string>
+    <string name="account_management_account_left_confirmation">Account lasciato con successo</string>
+    <string name="account_management_account_name_updated_confirmation">Nome account aggiornato correttamente</string>
+    <string name="account_management_error_title">OPS!</string>
+    <string name="setting_notification_permission_rejected_dialog_title">Autorizzazione notifiche negata</string>
+    <string name="setting_notification_permission_rejected_dialog_description">Per ricevere i tuoi promemoria giornalieri e mensili premium, devi consentire le notifiche. Vuoi ricevere le notifiche?</string>
+    <string name="setting_notification_permission_rejected_dialog_accept_cta">Permettere</string>
+    <string name="setting_notification_permission_rejected_dialog_not_now_cta">Non adesso</string>
+    <string name="account_management_error_deleting_invitation">Si è verificato un errore durante l\'eliminazione dell\'invito. Per favore riprova.\n(%s)</string>
+    <string name="account_management_error_updating_name">Si è verificato un errore durante l\'aggiornamento del nome dell\'account. Per favore riprova.\n(%s)</string>
+    <string name="account_management_error_sending_invitation">Si è verificato un errore durante l\'invio dell\'invito. Per favore riprova.\n(%s)</string>
+    <string name="account_management_error_leaving_account">Si è verificato un errore durante l\'uscita dall\'account. Per favore riprova.\n(%s)</string>
+    <string name="account_management_invitation_revoked">Invito revocato con successo</string>
+    <string name="account_management_invitation_sent">Invito inviato con successo</string>
+    <string name="account_management_account_deleted">Account cancellato con successo</string>
+    <string name="account_management_error_deleting_account">Si è verificato un errore durante l\'eliminazione dell\'account. Per favore riprova.\n(%s)</string>
+    <string name="monthly_report_unable_to_load_db_error_title">Impossibile accedere al database</string>
+    <string name="monthly_report_unable_to_load_db_error_message">Impossibile accedere al database per generare il rapporto mensile. Controlla la tua rete e riavvia l\'app.</string>
+    <string name="monthly_report_unable_to_load_db_error_cta">Annulla</string>
+    <string name="accounts_screen_title">Conti</string>
+    <string name="accounts_offline_account_title">Predefinito (non in linea)</string>
+    <string name="accounts_offline_backup_activated">Backup automatico su cloud abilitato.</string>
+    <string name="accounts_offline_backup_activated_no_auth">Accedi per abilitare il backup su cloud</string>
+    <string name="accounts_online_section_title">In linea</string>
+    <string name="accounts_online_login_title">Accedi con il tuo account Google</string>
+    <string name="accounts_online_login_desc">Per creare o recuperare i tuoi account online, accedi con il tuo account Google.</string>
+    <string name="accounts_online_login_cta">Accedi con Google</string>
+    <string name="accounts_online_pending_invitations">Inviti in sospeso</string>
+    <string name="accounts_online_own_accounts">I tuoi conti</string>
+    <string name="accounts_online_other_accounts">Altri conti</string>
+    <string name="accounts_online_not_pro_title">Vuoi sbloccare più account?</string>
+    <string name="accounts_online_not_pro_desc">Aggiungi account online, sempre sincronizzati e condivisibili in tempo reale con i tuoi amici/familiari/colleghi, aggiornando a Pro.</string>
+    <string name="accounts_online_not_pro_cta">Scopri FinanceTracker Pro</string>
+    <string name="accounts_online_iab_error_title">Impossibile connettersi al PlayStore</string>
+    <string name="accounts_online_iab_error_desc">Si è verificato un errore durante il controllo del tuo stato Pro, riprova e prova a riavviare il telefono se l\'errore persiste.</string>
+    <string name="accounts_online_iab_error_cta">Riprova</string>
+    <string name="accounts_online_fetch_error_title">Impossibile recuperare gli account online</string>
+    <string name="accounts_online_fetch_error_desc">Si è verificato un errore durante il recupero dei tuoi account online. Controlla la tua rete e riprova.\n(%s)</string>
+    <string name="accounts_online_fetch_error_cta">Riprova</string>
+    <string name="accounts_invitation_reject_cta">Rifiutare</string>
+    <string name="accounts_invitation_reject_confirm_title">Rifiuta l\'invito</string>
+    <string name="accounts_invitation_reject_confirm_desc">Sei sicuro di voler rifiutare questo invito all\'account? Dovrai essere nuovamente invitato per potervi accedere.</string>
+    <string name="accounts_invitation_reject_confirm_cta">Rifiutare</string>
+    <string name="accounts_invitation_accept_cta">Accettare</string>
+    <string name="create_account_account_name_title">Nome utente:</string>
+    <string name="create_account_account_name_placeholder">Conto di risparmio, conto cointestato, …</string>
+    <string name="create_account_account_name_too_large_error">Il nome deve contenere meno di 50 caratteri</string>
+    <string name="create_account_create_cta">Creare</string>
+    <string name="create_account_auth_error_title">Impossibile autenticarsi</string>
+    <string name="create_account_auth_error_desc">Impossibile connettersi al tuo account Google. Assicurati di aver effettuato correttamente l\'accesso e riprova.</string>
+    <string name="create_account_go_back_cta">Torna indietro</string>
+    <string name="create_account_creating_placeholder">Creazione del tuo nuovo account online…</string>
+    <string name="login_not_auth_title">Non autenticato</string>
+    <string name="login_not_auth_desc">Accedi per creare o recuperare i tuoi account online.</string>
+    <string name="login_not_auth_desc_2">Anche altri utenti Pro potranno invitarti a visualizzare/modificare il loro account utilizzando l\'indirizzo email del tuo account.</string>
+    <string name="login_not_auth_cta">Accedi con Google</string>
+    <string name="login_auth_title">Sei autenticato</string>
+    <string name="login_auth_desc">Gli account online verranno sincronizzati con il tuo account Google. Altri utenti Pro possono invitarti a visualizzare/modificare il proprio account utilizzando questo indirizzo email.</string>
+    <string name="login_auth_logout_title">Disconnettersi?</string>
+    <string name="login_auth_logout_desc">La disconnessione non eliminerà i tuoi account online ma non sarai in grado di accedervi fino a quando non effettuerai nuovamente il login.</string>
+    <string name="login_auth_logout_cta">Disconnettersi</string>
+    <string name="manage_account_invited_account_name_title">Nome utente</string>
+    <string name="manage_account_invited_leave_account_cta">Lascia il conto</string>
+    <string name="manage_account_invited_leave_account_confirm_title">Lascia il conto</string>
+    <string name="manage_account_invited_leave_account_confirm_desc">Sei sicuro di voler lasciare l\'account? Non potrai più accedervi fino a quando non sarai nuovamente invitato dal proprietario.</string>
+    <string name="manage_account_invited_leave_account_confirm_cta">Partire</string>
+    <string name="manage_account_owner_account_name_title">Nome utente:</string>
+    <string name="manage_account_owner_account_name_cta">Aggiornamento</string>
+    <string name="manage_account_owner_invitations_title">Inviti</string>
+    <string name="manage_account_owner_invitation_status_sent">Inviato</string>
+    <string name="manage_account_owner_invitation_status_accepted">Accettato</string>
+    <string name="manage_account_owner_invitation_delete_cta">Revocare</string>
+    <string name="manage_account_owner_invitation_delete_confirm_title">Revoca invito</string>
+    <string name="manage_account_owner_invitation_delete_confirm_desc">Sei sicuro di voler revocare questo invito? %s non sarà più in grado di accedere all\'account.</string>
+    <string name="manage_account_owner_invitation_delete_confirm_cta">Revocare</string>
+    <string name="manage_account_owner_invitation_empty_state">Nessun invito ancora inviato</string>
+    <string name="manage_account_owner_invitation_send_email">E-mail</string>
+    <string name="manage_account_owner_invitation_send_error_bad_email">Inserisci una email valida</string>
+    <string name="manage_account_owner_invitation_send_title">Invita a rendere conto</string>
+    <string name="manage_account_owner_invitation_send_desc">Inserisci l\'e-mail dell\'account Google dell\'utente FinanceTracker Pro che desideri invitare a questo account.</string>
+    <string name="manage_account_owner_invitation_send_cta">Invitare</string>
+    <string name="manage_account_owner_danger_zone_title">Zona pericolosa</string>
+    <string name="manage_account_owner_delete_account_cta">Eliminare l\'account</string>
+    <string name="manage_account_owner_delete_account_confirm_title">Eliminare l\'account</string>
+    <string name="manage_account_owner_delete_account_confirm_desc">Sei sicuro di voler eliminare l\'account? Tutti i dati verranno definitivamente cancellati, è impossibile cancellare.</string>
+    <string name="manage_account_owner_delete_account_confirm_cta">Eliminare</string>
+    <string name="manage_account_owner_account_full_disclaimer">Questo account è pieno, puoi invitare fino a 10 persone per account online.</string>
+    <string name="manage_account_error_title">Impossibile recuperare i dettagli dell\'account</string>
+    <string name="manage_account_error_desc">Si è verificato un errore durante il recupero dei dettagli dell\'account. Controlla la tua rete e riprova.\n(%s)</string>
+    <string name="manage_account_error_cta">Riprova</string>
+    <string name="manage_account_loading_generic">Caricamento…</string>
+    <string name="manage_account_loading_deleting_invitation">Eliminazione dell\'invito…</string>
+    <string name="manage_account_loading_sending_invitation">Invio invito…</string>
+    <string name="manage_account_loading_updating">In aggiornamento…</string>
+    <string name="manage_account_loading_deleting_account">Eliminazione dell\'account…</string>
+    <string name="manage_account_loading_leaving_account">Uscita dall\'account…</string>
+    <string name="main_account_name">Account:</string>
+    <string name="main_account_default_name">Predefinito (non in linea)</string>
+    <string name="main_account_online_name">%s (in linea)</string>
+    <string name="premium_popup_upgrade_cta">Aggiornamento</string>
+    <string name="premium_popup_become_go_back">Indietro</string>
+    <string name="calendar_month_loading_error_title">Impossibile caricare i dati</string>
+    <string name="calendar_month_loading_error_description">Si è verificato un errore durante il caricamento dei dati del calendario. Per favore riprova.\n(%s)</string>
+    <string name="premium_subscription_price">1,99€</string>
+    <string name="pro_subscription_price">4,99€</string>
+    <string name="title_activity_monthly_report_export">Esporta rapporto mensile</string>
+    <string name="action_export">Esporta come CSV</string>
+    <string name="monthly_report_data_loading_error_title">Impossibile caricare i dati</string>
+    <string name="monthly_report_data_loading_error_description">Si è verificato un errore durante la preparazione del file CSV. Per favore riprova.\n(%s)</string>
+    <string name="monthly_report_data_loading_error_cta">Riprova</string>
+    <string name="monthly_report_data_date_row">Data</string>
+    <string name="monthly_report_data_title_row">Titolo</string>
+    <string name="monthly_report_data_amount_row">Importo</string>
+    <string name="monthly_report_data_checked_row">Contrassegnato</string>
+    <string name="monthly_report_data_recurring_row">Ricorrente</string>
+    <string name="monthly_report_data_open_error_title">Spiacenti</string>
+    <string name="monthly_report_data_open_error_description">Impossibile aprire il CSV con un\'app sul tuo telefono. Assicurati di avere un\'app in grado di aprire file CSV e riprova.</string>
+    <string name="monthly_report_export_data_loaded_title">Il tuo file CSV è pronto</string>
+    <string name="monthly_report_export_data_loaded_cta">Esporta</string>
+    <string name="update_three_dot_two_notification_title">Novità in FinanceTracker</string>
+    <string name="update_three_dot_two_notification_message">Come utente Pro, ora puoi esportare i tuoi rapporti mensili come CSV!</string>
+    <string name="update_three_dot_two_notification_cta">Scopri</string>
+    <string name="settings_error_loading_title">Impossibile caricare le impostazioni</string>
+    <string name="settings_error_loading_description">Si è verificato un errore durante il caricamento delle impostazioni. Per favore riprova.\n(%s)</string>
+</resources>
