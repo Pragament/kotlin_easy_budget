@@ -1,8 +1,8 @@
-# EasyBudget
+# FinanceTracker
 
-EasyBudget is a **simple** budget management Android application.
+FinanceTracker is a **simple** budget management Android application.
 
-![EasyBudget](http://i.imgur.com/hiQrR38.png)
+![FinanceTracker](http://i.imgur.com/hiQrR38.png)
 
 ### Project idea
 
@@ -12,11 +12,11 @@ I wanted a simpler app to manage budget on Android: No stats/graph, simple inter
 
 ### Available on PlayStore
 
-You can download EasyBudget on the PlayStore: [https://play.google.com/store/apps/details?id=com.benoitletondor.easybudgetapp](https://play.google.com/store/apps/details?id=com.benoitletondor.easybudgetapp)
+You can download FinanceTracker on the PlayStore: [https://play.google.com/store/apps/details?id=com.benoitletondor.FinanceTrackerapp](https://play.google.com/store/apps/details?id=com.benoitletondor.FinanceTrackerapp)
 
 ### Technical details
 
-EasyBudget is a simple Android app built with Android Studio that supports Android 5+. 
+FinanceTracker is a simple Android app built with Android Studio that supports Android 5+. 
 
 The app adopt material design as much as possible using Androidx, Compose and some other libraries.
 
@@ -24,7 +24,7 @@ The project also uses some external libraries, especially Calendar: a library to
 
 ### Contact
 
-You can contact me regarding EasyBudget using this email: [easybudget@benoitletondor.com](mailto:easybudget@benoitletondor.com)
+You can contact me regarding FinanceTracker using this email: [FinanceTracker@benoitletondor.com](mailto:FinanceTracker@benoitletondor.com)
 
 ### Contributors
 
@@ -39,6 +39,10 @@ You can contact me regarding EasyBudget using this email: [easybudget@benoitleto
 
 ### Copyright
 
-    Copyright (C) 2025 Benoit LETONDOR. The name "EasyBudget", the app idea and assets (images, names, wordings etc...) are all under copyright.
+    Copyright (C) 2025 Benoit LETONDOR. The name "FinanceTracker", the app idea and assets (images, names, wordings etc...) are all under copyright.
 
     Sources are availables under the Apache 2 licence (See LICENSE for details) and contributions will be warmely welcomed! Feel free to contribute :)
+
+
+### Attribution
+This project is based on [EasyBudget](https://github.com/Pragament/kotlin_easy_budget) and follows the Apache License 2.0.

@@ -1,0 +1,129 @@
+/*
+ *   Copyright 2025 Benoit Letondor
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ */
+
+package com.benoitletondor.FinanceTrackerapp.auth
+
+import android.app.Activity
+import android.content.Intent
+import android.util.Base64
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.result.ActivityResult
+import com.benoitletondor.FinanceTrackerapp.helper.Logger
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.IdpResponse
+import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+
+private const val AUTH_STATE_SETUP_TIMEOUT_MS = 10000L
+
+class FirebaseAuth(
+    private val auth: com.google.firebase.auth.FirebaseAuth,
+) : Auth, CoroutineScope by CoroutineScope(SupervisorJob() + Dispatchers.IO) {
+
+    private val currentState = MutableStateFlow<AuthState>(AuthState.Authenticating)
+    override val state: StateFlow<AuthState> = currentState
+
+    init {
+        auth.addAuthStateListener {
+            updateAuthState()
+        }
+
+        launch {
+            delay(AUTH_STATE_SETUP_TIMEOUT_MS)
+            if (state.value === AuthState.Authenticating) {
+                Logger.error("FirebaseAuth", "Auth state setup timeout, forcing state update", Exception("Auth state setup timeout"))
+                updateAuthState()
+            }
+        }
+    }
+
+    override fun startAuthentication(launcher: ManagedActivityResultLauncher<Intent, ActivityResult>) {
+        currentState.value = AuthState.Authenticating
+
+        try {
+            launcher.launch(
+                AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(listOf(AuthUI.IdpConfig.GoogleBuilder().build()))
+                    .build()
+            )
+        } catch (error: Throwable) {
+            Logger.error("FirebaseAuth", "Error launching auth activity", error)
+            updateAuthState()
+        }
+
+    }
+
+    override fun handleActivityResult(resultCode: Int, data: Intent?) {
+        if (resultCode != Activity.RESULT_OK) {
+            val response = IdpResponse.fromResultIntent(data)
+            if( response != null ) {
+                Logger.error(
+                    "FirebaseAuth",
+                    "Error while authenticating: ${response.error?.errorCode}: ${response.error?.localizedMessage}",
+                    response.error
+                )
+            }
+        }
+
+        updateAuthState()
+    }
+
+    override fun logout() {
+        auth.signOut()
+        updateAuthState()
+    }
+
+    override suspend fun refreshUserTokens() {
+        currentState.value = getAuthState(forceRefreshToken = true)
+    }
+
+    private fun updateAuthState() {
+        launch {
+            currentState.value = getAuthState(forceRefreshToken = false)
+        }
+    }
+
+    private suspend fun getAuthState(forceRefreshToken: Boolean): AuthState {
+        val firebaseUser = auth.currentUser
+        return if( firebaseUser == null ) {
+            AuthState.NotAuthenticated
+        } else {
+            try {
+                val token = firebaseUser.getIdToken(forceRefreshToken).await().token!!
+                AuthState.Authenticated(
+                    currentUser = firebaseUser.toCurrentUser(token),
+                )
+            } catch (e: Exception) {
+                Logger.error("Error while getting firebase token", e)
+                AuthState.NotAuthenticated
+            }
+        }
+    }
+}
+
+private fun FirebaseUser.toCurrentUser(token: String) = CurrentUser(
+    id = uid,
+    email = email!!,
+    token,
+)
