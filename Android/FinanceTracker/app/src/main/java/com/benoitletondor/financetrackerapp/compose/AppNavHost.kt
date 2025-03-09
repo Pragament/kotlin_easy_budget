@@ -76,6 +76,10 @@ import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import upiqrexpenseadd.UpiQrEditView
+import upiqrexpenseadd.UpiQrEditViewModelFactory
+import upiqrexpenseadd.UpiQrExpenseAddDestination
+import upiqrexpenseadd.UpiQrExpenseEditDestination
 import java.time.LocalDate
 import kotlin.reflect.typeOf
 
@@ -88,6 +92,7 @@ fun AppNavHost(
     openAddExpenseScreenLiveFlow: Flow<Unit>,
     openAddRecurringExpenseScreenLiveFlow: Flow<Unit>,
     openMonthlyReportScreenFlow: Flow<Unit>,
+    openUpiQrExpenseScreenLiveFlow: Flow<Unit>,
 ) {
     val navController = rememberNavController()
 
@@ -129,6 +134,7 @@ fun AppNavHost(
                 openAddExpenseScreenLiveFlow = openAddExpenseScreenLiveFlow,
                 openAddRecurringExpenseScreenLiveFlow = openAddRecurringExpenseScreenLiveFlow,
                 openMonthlyReportScreenFromNotificationFlow = openMonthlyReportScreenFlow,
+                openUpiQrExpenseScreenLiveFlow = openUpiQrExpenseScreenLiveFlow,
                 navigateToOnboarding = {
                     navController.navigate(OnboardingDestination)
                 },
@@ -157,6 +163,13 @@ fun AppNavHost(
                         navController.navigate(ExpenseEditDestination(date = date, editedExpense = editedExpense))
                     } else {
                         navController.navigate(ExpenseAddDestination(date = date))
+                    }
+                },
+                navigateToUpiQrExpense = { date, editedExpense ->
+                    if (editedExpense != null) {
+                        navController.navigate(UpiQrExpenseEditDestination(date = date, editedExpense = editedExpense))
+                    } else {
+                        navController.navigate(UpiQrExpenseAddDestination(date = date))
                     }
                 },
                 navigateToAddRecurringExpense = { date, editedExpense ->
@@ -379,6 +392,50 @@ fun AppNavHost(
                 },
             )
         }
+
+        composable<UpiQrExpenseEditDestination>(
+            typeMap = mapOf(typeOf<SerializedExpense>() to SerializedExpenseNavType),
+        ) { backStackEntry ->
+            val destination: UpiQrExpenseEditDestination = backStackEntry.toRoute()
+            UpiQrEditView(
+                viewModel = hiltViewModel(
+                    creationCallback = { factory: UpiQrEditViewModelFactory ->
+                        factory.create(
+                            date = LocalDate.ofEpochDay(destination.dateEpochDay),
+                            editedExpense = destination.editedExpense.toExpense(),
+                        )
+                    }
+
+                ),
+                navigateUp = {
+                    navController.navigateUp()
+                },
+                finish = {
+                    navController.popBackStack()
+                },
+            )
+        }
+        composable<UpiQrExpenseAddDestination> { backStackEntry ->
+            val destination: UpiQrExpenseAddDestination = backStackEntry.toRoute()
+            UpiQrEditView(
+                viewModel = hiltViewModel(
+                    creationCallback = { factory: UpiQrEditViewModelFactory ->
+                        factory.create(
+                            date = LocalDate.ofEpochDay(destination.dateEpochDay),
+                            editedExpense = null,
+                        )
+                    }
+
+                ),
+                navigateUp = {
+                    navController.navigateUp()
+                },
+                finish = {
+                    navController.popBackStack()
+                },
+            )
+        }
+
     }
 }
 

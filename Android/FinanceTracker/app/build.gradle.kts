@@ -183,4 +183,11 @@ dependencies {
     implementation("net.lingala.zip4j:zip4j:2.11.5")
 
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.10.0")
+
+    implementation ("com.google.mlkit:barcode-scanning:17.2.0")  // ML Kit for QR Scanner
+    implementation ("androidx.camera:camera-core:1.3.0")  // CameraX
+    implementation ("androidx.camera:camera-lifecycle:1.3.0")
+    implementation ("androidx.camera:camera-view:1.3.0")
+    implementation("io.github.g00fy2.quickie:quickie-bundled:1.10.0")
+
 }
