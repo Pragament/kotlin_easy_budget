@@ -24,8 +24,8 @@
         android:shortcutDisabledMessage="@string/fab_add_monthly_expense">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.benoitletondor.easybudgetapp"
-            android:targetClass="com.benoitletondor.easybudgetapp.MainActivity">
+            android:targetPackage="com.benoitletondor.FinanceTrackerapp"
+            android:targetClass="com.benoitletondor.FinanceTrackerapp.MainActivity">
 
             <extra
                 android:name="intent.addrecurringexpense.show"
@@ -45,8 +45,8 @@
         android:shortcutDisabledMessage="@string/fab_add_expense">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.benoitletondor.easybudgetapp"
-            android:targetClass="com.benoitletondor.easybudgetapp.MainActivity">
+            android:targetPackage="com.benoitletondor.FinanceTrackerapp"
+            android:targetClass="com.benoitletondor.FinanceTrackerapp.MainActivity">
 
             <extra
                 android:name="intent.addexpense.show"
@@ -66,8 +66,8 @@
         android:shortcutDisabledMessage="@string/upi_qr_scanner">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.benoitletondor.easybudgetapp"
-            android:targetClass="com.benoitletondor.easybudgetapp.MainActivity">
+            android:targetPackage="com.benoitletondor.FinanceTrackerapp"
+            android:targetClass="com.benoitletondor.FinanceTrackerapp.MainActivity">
             <extra
                 android:name="intent.qrscanner.open"
                 android:value="true" />
