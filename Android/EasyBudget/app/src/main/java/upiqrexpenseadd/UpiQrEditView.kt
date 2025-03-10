@@ -506,6 +506,7 @@ fun launchUPIUrl(activity: Activity, upiId: String, amount: Double, payeeName: S
             }
         })
 
+        
         easyUpiPayment.startPayment()
     } catch (e: Exception) {
         Toast.makeText(activity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
