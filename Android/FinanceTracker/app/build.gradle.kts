@@ -189,5 +189,7 @@ dependencies {
     implementation ("androidx.camera:camera-lifecycle:1.3.0")
     implementation ("androidx.camera:camera-view:1.3.0")
     implementation("io.github.g00fy2.quickie:quickie-bundled:1.10.0")
+    implementation("androidx.media3:media3-common-ktx:1.5.1")
+    implementation ("dev.shreyaspatil.EasyUpiPayment:EasyUpiPayment:3.0.3")
 
 }
